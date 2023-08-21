@@ -23,7 +23,8 @@ namespace WebApplication1.Controllers
         // GET: Novedads
         public async Task<IActionResult> Index()
         {
-              return _context.Novedad != null ? 
+            
+            return _context.Novedad != null ? 
                           View(await _context.Novedad.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Novedad'  is null.");
         }
@@ -36,8 +37,8 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var novedad = await _context.Novedad
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var novedad = await _context.Novedad.FirstOrDefaultAsync(m => m.Id == id);
+            //var novedad = _context.Novedad.OrderBy(n => n.Date).ToList();
             if (novedad == null)
             {
                 return NotFound();
