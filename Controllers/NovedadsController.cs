@@ -62,6 +62,9 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+                novedad.Publisher = User.Identity.Name;
+                novedad.Date = DateTime.Now;
+
                 _context.Add(novedad);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
